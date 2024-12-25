@@ -1,0 +1,45 @@
+<template>
+  <div>
+    <el-tabs v-model="activeName">
+      <el-tab-pane label="CT" lazy name="CT">
+        <TabCT @handleTableClick="handleTableClick" />
+      </el-tab-pane>
+      <el-tab-pane label="类目" lazy name="category">
+        <TabCategory @handleTableClick="handleTableClick" />
+      </el-tab-pane>
+      <el-tab-pane label="Style" lazy name="style">
+        <TabStyle :style-params="styleParams" />
+      </el-tab-pane>
+    </el-tabs>
+  </div>
+</template>
+<script>
+import TabCT from './TabCT.vue'
+import TabCategory from './TabCategory.vue'
+import TabStyle from './TabStyle.vue'
+export default {
+  components: {
+    TabCT,
+    TabCategory,
+    TabStyle,
+  },
+  data() {
+    return {
+      activeName: 'CT',
+      styleParams: {},
+    }
+  },
+  methods: {
+    handleTableClick(params) {
+      this.activeName = 'style'
+      this.styleParams = params
+    },
+  },
+}
+</script>
+
+<style lang="scss" scoped>
+::v-deep .el-dialog__body {
+  padding: 5px 20px;
+}
+</style>
